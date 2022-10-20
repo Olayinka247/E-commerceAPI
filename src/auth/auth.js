@@ -1,6 +1,8 @@
 import express from "express";
 import createError from "http-errors";
 import userModel from "../apis/Users/model.js";
+import { generateAccessToken } from "../auth/tools.js";
+import { JWTMiddleware, JWTMiddlewareAdmin } from "../auth/token.js";
 
 const authRouter = express.Router();
 
@@ -24,7 +26,10 @@ authRouter.post("/login", async (req, res, next) => {
     if (!user) {
       next(createError(401, "invalid Credentials"));
     } else {
-      res.status(200).json(user);
+      const accessToken = await generateAccessToken({
+        _id: user._id,
+      });
+      res.status(200).json({ accessToken });
     }
   } catch (err) {
     next(err);

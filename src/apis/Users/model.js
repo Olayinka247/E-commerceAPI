@@ -38,4 +38,12 @@ userSchema.static("checkCredentials", async function (username, password) {
   return null;
 });
 
+// exclude password and __v from the response
+userSchema.methods.toJSON = function () {
+  const user = this.toObject();
+  delete user.password;
+  delete user.__v;
+  return user;
+};
+
 export default model("User", userSchema);
