@@ -2,7 +2,6 @@ import express from "express";
 import createError from "http-errors";
 import userModel from "../apis/Users/model.js";
 import { generateAccessToken } from "../auth/tools.js";
-import { JWTMiddleware, JWTMiddlewareAdmin } from "../auth/token.js";
 
 const authRouter = express.Router();
 

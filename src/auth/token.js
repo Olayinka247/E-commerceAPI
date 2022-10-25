@@ -13,7 +13,6 @@ export const JWTMiddleware = async (req, res, next) => {
       const payload = await verifyAccessToken(token);
       req.user = {
         _id: payload._id,
-        isAdmin: payload.isAdmin,
       };
       next();
     } catch (error) {
@@ -37,7 +36,6 @@ export const JWTMiddlewareAdmin = async (req, res, next) => {
       } else {
         req.user = {
           _id: payload._id,
-          isAdmin: payload.isAdmin,
         };
         next();
       }
