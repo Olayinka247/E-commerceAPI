@@ -4,8 +4,10 @@ import listEndpoints from "express-list-endpoints";
 import cors from "cors";
 import {
   badRequestHandler,
-  genericErrorHandler,
+  forbiddenHandler,
+  unauthorizedHandler,
   notFoundHandler,
+  catchAllHandler,
 } from "./errorHandler.js";
 import userRouter from "./apis/Users/index.js";
 import authRouter from "./auth/auth.js";
@@ -25,7 +27,9 @@ server.use("/auth", authRouter);
 //ERRORHANDLERS
 server.use(badRequestHandler);
 server.use(notFoundHandler);
-server.use(genericErrorHandler);
+server.use(forbiddenHandler);
+server.use(unauthorizedHandler);
+server.use(catchAllHandler);
 
 mongoose.connect(process.env.MONGO_CONNECTION_LINK);
 

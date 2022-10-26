@@ -27,6 +27,7 @@ authRouter.post("/login", async (req, res, next) => {
     } else {
       const accessToken = await generateAccessToken({
         _id: user._id,
+        isAdmin: user.isAdmin,
       });
       res.status(200).json({ accessToken });
     }
