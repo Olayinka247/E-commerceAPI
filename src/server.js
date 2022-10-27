@@ -2,6 +2,9 @@ import express, { Router } from "express";
 import mongoose from "mongoose";
 import listEndpoints from "express-list-endpoints";
 import cors from "cors";
+import userRouter from "./apis/Users/index.js";
+import authRouter from "./auth/auth.js";
+import productRouter from "./apis/Products/index.js";
 import {
   badRequestHandler,
   forbiddenHandler,
@@ -9,8 +12,6 @@ import {
   notFoundHandler,
   catchAllHandler,
 } from "./errorHandler.js";
-import userRouter from "./apis/Users/index.js";
-import authRouter from "./auth/auth.js";
 
 const server = express();
 
@@ -21,8 +22,9 @@ server.use(express.json());
 server.use(cors());
 
 //ROUTES
-server.use("/users", userRouter);
 server.use("/auth", authRouter);
+server.use("/users", userRouter);
+server.use("/products", productRouter);
 
 //ERRORHANDLERS
 server.use(badRequestHandler);

@@ -27,3 +27,12 @@ export const JWTMiddleware = async (req, res, next) => {
     }
   }
 };
+
+// verify token and Admin
+export const adminOnlyMiddleware = (req, res, next) => {
+  if (req.user.isAdmin) {
+    next();
+  } else {
+    next(createHttpError(403, "Admin only endpoint!"));
+  }
+};
