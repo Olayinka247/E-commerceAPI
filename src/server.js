@@ -5,6 +5,8 @@ import cors from "cors";
 import userRouter from "./apis/Users/index.js";
 import authRouter from "./auth/auth.js";
 import productRouter from "./apis/Products/index.js";
+import cartRouter from "./apis/Carts/index.js";
+import orderRouter from "./apis/Order/index.js";
 import {
   badRequestHandler,
   forbiddenHandler,
@@ -25,6 +27,8 @@ server.use(cors());
 server.use("/auth", authRouter);
 server.use("/users", userRouter);
 server.use("/products", productRouter);
+server.use("/carts", cartRouter);
+server.use("/orders", orderRouter);
 
 //ERRORHANDLERS
 server.use(badRequestHandler);

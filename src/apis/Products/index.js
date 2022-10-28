@@ -95,27 +95,4 @@ productRouter.get("/:productId", async (req, res, next) => {
   }
 });
 
-//Get All Products
-productRouter.get("/", async (req, res, next) => {
-  const queryNew = req.query.new;
-  const queryCategory = req.query.category;
-  try {
-    let products;
-    if (queryNew) {
-      products = await productModel.find().sort({ createdAt: -1 }).limit(5);
-    } else if (queryCategory) {
-      products = productModel.find({
-        categories: {
-          $in: [queryCategory],
-        },
-      });
-    } else {
-      products = productModel.find();
-    }
-    res.send(products);
-  } catch (error) {
-    next(error);
-  }
-});
-
 export default productRouter;
