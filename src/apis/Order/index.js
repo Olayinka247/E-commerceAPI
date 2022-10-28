@@ -6,8 +6,8 @@ import { JWTMiddleware, adminOnlyMiddleware } from "../../auth/token.js";
 const orderRouter = express.Router();
 
 //CRUD ENDPOINTS
-//GET MONTHLY INCOME
 
+//GET MONTHLY INCOME
 orderRouter.get(
   "/income",
   JWTMiddleware,
